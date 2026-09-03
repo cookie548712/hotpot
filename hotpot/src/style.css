@@ -1,0 +1,68 @@
+:root {
+  /* 瓷盘夜菜单：冷瓷白 × 靛蓝墨 × 辣椒油点缀（避开奶油陶土 / 紫渐变 / 报纸栏） */
+  --ink: #1a2330;
+  --ink-soft: #2c3848;
+  --porcelain: #f5f6f8;
+  --porcelain-deep: #e8ebf0;
+  --steam: #7d8b9c;
+  --muted: #5c6a7a;
+  --indigo: #243656;
+  --chili: #c45c3e;
+  --rim: #b7a78a;
+  --panel: #ffffff;
+  --line: color-mix(in srgb, var(--indigo) 14%, transparent);
+
+  --font-display: 'LXGW WenKai', 'Noto Serif SC', 'Songti SC', serif;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-ui: 'Syne', var(--font-sans);
+
+  --radius-sm: 3px;
+  --shadow-soft: 0 10px 30px color-mix(in srgb, var(--indigo) 10%, transparent);
+
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--porcelain);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, color-mix(in srgb, var(--indigo) 9%, transparent), transparent 60%),
+    radial-gradient(circle at 100% 80%, color-mix(in srgb, var(--chili) 7%, transparent), transparent 35%),
+    linear-gradient(165deg, #f7f8fa 0%, var(--porcelain) 45%, var(--porcelain-deep) 100%);
+  background-attachment: fixed;
+}
+
+#app {
+  min-height: 100dvh;
+}
+
+button {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--chili) 28%, white);
+  color: var(--ink);
+}
