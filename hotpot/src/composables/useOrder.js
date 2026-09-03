@@ -23,6 +23,7 @@ const activeTab = ref('底料')
 const previewOpen = ref(false)
 const previewUrl = ref('')
 const generating = ref(false)
+const sheetOpen = ref(false)
 
 watch(
   [brothId, dishIds],
@@ -72,11 +73,34 @@ export function useOrder() {
     else dishIds.value.push(dish.id)
   }
 
+  function removeDish(dish) {
+    if (dish.category === '底料') {
+      if (brothId.value === dish.id) brothId.value = null
+      return
+    }
+    const idx = dishIds.value.indexOf(dish.id)
+    if (idx >= 0) dishIds.value.splice(idx, 1)
+  }
+
+  function clearMenu() {
+    brothId.value = null
+    dishIds.value = []
+  }
+
+  function openSheet() {
+    sheetOpen.value = true
+  }
+
+  function closeSheet() {
+    sheetOpen.value = false
+  }
+
   function resetOrder() {
     brothId.value = null
     dishIds.value = []
     previewOpen.value = false
     previewUrl.value = ''
+    sheetOpen.value = false
     activeTab.value = '底料'
   }
 
@@ -91,6 +115,7 @@ export function useOrder() {
     previewOpen,
     previewUrl,
     generating,
+    sheetOpen,
     broth,
     selectedDishes,
     meatCount,
@@ -100,6 +125,10 @@ export function useOrder() {
     summaryText,
     isSelected,
     toggleDish,
+    removeDish,
+    clearMenu,
+    openSheet,
+    closeSheet,
     resetOrder,
     closePreview,
   }

@@ -5,16 +5,19 @@ defineProps({
   generating: { type: Boolean, default: false },
 })
 
-defineEmits(['generate'])
+defineEmits(['generate', 'open-sheet'])
 </script>
 
 <template>
   <footer class="bar">
     <div class="inner">
-      <div class="summary">
+      <button type="button" class="summary" @click="$emit('open-sheet')">
         <span class="kicker">本顿菜单</span>
-        <p>{{ summary }}</p>
-      </div>
+        <p>
+          <span class="text">{{ summary }}</span>
+          <span class="chev" aria-hidden="true">展开</span>
+        </p>
+      </button>
       <button
         type="button"
         class="cta"
@@ -54,6 +57,14 @@ defineEmits(['generate'])
 .summary {
   flex: 1;
   min-width: 0;
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .kicker {
@@ -68,6 +79,13 @@ defineEmits(['generate'])
 
 .summary p {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.text {
   font-family: var(--font-display);
   font-size: 0.98rem;
   letter-spacing: 0.06em;
@@ -75,6 +93,17 @@ defineEmits(['generate'])
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--ink);
+  min-width: 0;
+}
+
+.chev {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--steam);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.12rem 0.4rem;
 }
 
 .cta {
@@ -92,6 +121,7 @@ defineEmits(['generate'])
   cursor: pointer;
   box-shadow: 0 8px 18px color-mix(in srgb, var(--chili) 28%, transparent);
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .cta:hover:not(:disabled) {

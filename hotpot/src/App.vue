@@ -7,6 +7,7 @@ import DishGrid from './components/DishGrid.vue'
 import BottomBar from './components/BottomBar.vue'
 import MemorialCard from './components/MemorialCard.vue'
 import CardPreview from './components/CardPreview.vue'
+import OrderSheet from './components/OrderSheet.vue'
 import { BRAND } from './config.js'
 import { useOrder } from './composables/useOrder.js'
 
@@ -15,12 +16,17 @@ const {
   previewOpen,
   previewUrl,
   generating,
+  sheetOpen,
   broth,
   selectedDishes,
   canGenerate,
   summaryText,
   isSelected,
   toggleDish,
+  removeDish,
+  clearMenu,
+  openSheet,
+  closeSheet,
   resetOrder,
   closePreview,
 } = useOrder()
@@ -85,6 +91,17 @@ async function generateCard() {
       :can-generate="canGenerate"
       :generating="generating"
       @generate="generateCard"
+      @open-sheet="openSheet"
+    />
+
+    <OrderSheet
+      :open="sheetOpen"
+      :broth="broth"
+      :meats="meats"
+      :vegs="vegs"
+      @close="closeSheet"
+      @remove="removeDish"
+      @clear="clearMenu"
     />
 
     <div class="capture-host" aria-hidden="true">
