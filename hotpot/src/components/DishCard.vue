@@ -17,8 +17,10 @@ defineEmits(['toggle'])
     :aria-pressed="selected"
     @click="$emit('toggle', dish)"
   >
-    <span class="plate">
-      <img :src="dish.image" :alt="dish.name" loading="lazy" />
+    <span class="plate-wrap">
+      <span class="plate">
+        <img :src="dish.image" :alt="dish.name" loading="lazy" />
+      </span>
       <span v-if="selected" class="seal" aria-hidden="true">
         {{ mode === 'single' ? '此锅' : '点' }}
       </span>
@@ -35,18 +37,26 @@ defineEmits(['toggle'])
   appearance: none;
   border: none;
   background: transparent;
-  padding: 0;
+  padding: 0.15rem 0.15rem 0;
   cursor: pointer;
   text-align: left;
   color: inherit;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow: visible;
   animation: dish-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.plate-wrap {
+  position: relative;
+  display: block;
+  overflow: visible;
 }
 
 .plate {
   position: relative;
+  display: block;
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 50%;
@@ -87,17 +97,19 @@ defineEmits(['toggle'])
 
 .dish.selected .plate {
   box-shadow:
-    inset 0 0 0 1.5px var(--chili),
+    inset 0 0 0 2px var(--chili),
     inset 0 0 0 7px color-mix(in srgb, white 65%, transparent),
     0 10px 22px color-mix(in srgb, var(--chili) 18%, transparent);
 }
 
+/* 印章放在圆盘外层，避免被 overflow:hidden 的圆形裁切 */
 .seal {
   position: absolute;
-  right: 8%;
-  bottom: 8%;
-  width: 1.7rem;
-  height: 1.7rem;
+  right: -0.15rem;
+  bottom: -0.1rem;
+  z-index: 2;
+  width: 1.75rem;
+  height: 1.75rem;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -108,6 +120,7 @@ defineEmits(['toggle'])
   background: color-mix(in srgb, var(--chili) 92%, #4a180e);
   box-shadow: 0 2px 8px color-mix(in srgb, var(--chili) 35%, transparent);
   animation: stamp 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+  pointer-events: none;
 }
 
 .featured .seal {
@@ -116,6 +129,8 @@ defineEmits(['toggle'])
   padding: 0.22rem 0.45rem;
   border-radius: 999px;
   font-size: 0.64rem;
+  right: -0.1rem;
+  bottom: -0.05rem;
 }
 
 .meta {
@@ -162,6 +177,7 @@ defineEmits(['toggle'])
     opacity: 0;
     transform: translateY(12px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -173,6 +189,7 @@ defineEmits(['toggle'])
     opacity: 0;
     transform: scale(0.6) rotate(-12deg);
   }
+
   to {
     opacity: 1;
     transform: scale(1) rotate(0deg);
