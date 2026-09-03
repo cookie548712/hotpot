@@ -62,6 +62,9 @@ defineEmits(['update:modelValue'])
   color: var(--steam);
   position: relative;
   transition: color 0.2s ease, background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .tab.active {

@@ -40,6 +40,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -56,10 +57,22 @@ body {
 
 button {
   font: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img {
   max-width: 100%;
+}
+
+/* 菜单交互：去掉移动端蓝底高亮；菜图禁止长按呼出系统菜单（纪念卡预览单独放开） */
+.dish,
+.tab,
+.cta,
+.ghost,
+.solid {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 ::selection {

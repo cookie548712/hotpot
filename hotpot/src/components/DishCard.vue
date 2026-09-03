@@ -16,10 +16,17 @@ defineEmits(['toggle'])
     :class="{ selected, featured, single: mode === 'single' }"
     :aria-pressed="selected"
     @click="$emit('toggle', dish)"
+    @contextmenu.prevent
   >
     <span class="plate-wrap">
       <span class="plate">
-        <img :src="dish.image" :alt="dish.name" loading="lazy" />
+        <img
+          :src="dish.image"
+          :alt="dish.name"
+          loading="lazy"
+          draggable="false"
+          @dragstart.prevent
+        />
       </span>
       <span v-if="selected" class="seal" aria-hidden="true">
         {{ mode === 'single' ? '此锅' : '点' }}
@@ -45,6 +52,10 @@ defineEmits(['toggle'])
   flex-direction: column;
   gap: 0.5rem;
   overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
   animation: dish-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -82,6 +93,10 @@ defineEmits(['toggle'])
   border-radius: inherit;
   display: block;
   transition: transform 0.4s ease;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .featured .plate img {
