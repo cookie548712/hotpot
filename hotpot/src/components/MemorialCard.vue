@@ -53,11 +53,6 @@ const title = memorialTitle()
         </li>
       </ul>
     </section>
-
-    <footer class="foot">
-      <span class="seal" aria-hidden="true">夜</span>
-      <span>长按保存 · 留住这一顿</span>
-    </footer>
   </article>
 </template>
 
@@ -227,31 +222,5 @@ const title = memorialTitle()
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.foot {
-  margin-top: 1.25rem;
-  padding-top: 0.85rem;
-  border-top: 1px dashed color-mix(in srgb, #b7a78a 50%, transparent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  color: #7d8b9c;
-}
-
-.seal {
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: 'LXGW WenKai', serif;
-  font-size: 0.62rem;
-  color: #fff7f2;
-  background: #c45c3e;
-  letter-spacing: 0;
 }
 </style>
