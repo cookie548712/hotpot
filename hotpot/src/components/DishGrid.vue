@@ -17,20 +17,9 @@ const isBroth = computed(() => props.category === '底料')
 
 <template>
   <section class="grid-wrap" :aria-label="category">
-    <div class="section-head">
-      <p class="note">{{ isBroth ? '汤底只选一款，定下今晚的锅气' : '点一下选中，再点取消' }}</p>
-    </div>
     <div class="grid" :class="{ broth: isBroth }">
-      <DishCard
-        v-for="(dish, i) in list"
-        :key="dish.id"
-        :dish="dish"
-        :selected="isSelected(dish)"
-        :mode="mode"
-        :featured="isBroth"
-        :style="{ animationDelay: `${Math.min(i, 8) * 40}ms` }"
-        @toggle="$emit('toggle', $event)"
-      />
+      <DishCard v-for="(dish, i) in list" :key="dish.id" :dish="dish" :selected="isSelected(dish)" :mode="mode"
+        :featured="isBroth" :style="{ animationDelay: `${Math.min(i, 8) * 40}ms` }" @toggle="$emit('toggle', $event)" />
     </div>
   </section>
 </template>

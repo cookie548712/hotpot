@@ -13,7 +13,7 @@ const title = memorialTitle()
       <span class="date">{{ title }}</span>
     </p>
     <h1 class="brand">{{ BRAND }}</h1>
-    <p class="lead">先定汤底，再点荤素。生成一张只属于今晚的菜单纪念卡。</p>
+    <p class="lead">先定汤底，再点荤素。</p>
     <div class="menu-rule" aria-hidden="true">
       <span class="knot" />
     </div>
